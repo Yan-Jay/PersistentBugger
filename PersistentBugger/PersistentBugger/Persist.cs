@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersistentBugger
+﻿namespace PersistentBugger
 {
     public class Persist
     {
@@ -12,32 +6,17 @@ namespace PersistentBugger
         {
             if (n < 10) return 0;
             var count = 0;
-            return Temp(n,count);
+            return PersistentBuggerFunction(n, count);
         }
 
-        private static int Temp(long n,int count)
+        private static int PersistentBuggerFunction(long n, int count)
         {
-            var temp = 1;
             var i = n.ToString().ToCharArray();
-            int[] j = Array.ConvertAll(i, new Converter<char, int>(CharToInt));
-            foreach (var target in j)
-            {
-                temp *= target;
-            }
-
+            var temp = 1;
+            foreach (var target in i) temp *= (target - 48);
             count++;
-
-            if (temp < 10)
-            {
-                return count;
-            }
-
-            return Temp(temp, count);
-        }
-
-        public static int CharToInt(char pf)
-        {
-            return pf-48;
+            if (temp < 10) return count;
+            return PersistentBuggerFunction(temp, count);
         }
     }
 }
