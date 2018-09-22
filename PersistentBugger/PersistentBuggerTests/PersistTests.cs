@@ -1,36 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PersistentBugger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
-namespace PersistentBugger.Tests
+namespace PersistentBuggerTests
 {
-    //[TestClass()]
-    //public class PersistTests
-    //{
-    //    [TestMethod()]
-    //    public void PersistenceTest()
-    //    {
-    //        Assert.Fail();
-    //    }
-    //}
-    [TestFixture]
+    [TestClass()]
     public class PersistTests
     {
-
-        [Test]
-        public void Test1()
+        [DataTestMethod]
+        [DataRow(39, 3, DisplayName = "39 should return 3")]
+        [DataRow(4, 0, DisplayName = "4 should return 0")]
+        [DataRow(25, 2, DisplayName = "25 should return 2")]
+        [DataRow(999, 4, DisplayName = "999 should return 4")]
+        public void PersistenceTest(int input, int expected)
         {
-            Console.WriteLine("****** Basic Tests");
-            Assert.AreEqual(3, Persist.Persistence(39));
-            Assert.AreEqual(0, Persist.Persistence(4));
-            Assert.AreEqual(2, Persist.Persistence(25));
-            Assert.AreEqual(4, Persist.Persistence(999));
+            var actural = new Persist().Persistence(input);
+            Assert.AreEqual(expected, actural);
         }
     }
 }

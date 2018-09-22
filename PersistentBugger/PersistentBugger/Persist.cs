@@ -2,14 +2,14 @@
 {
     public class Persist
     {
-        public static int Persistence(long n)
+        public  int Persistence(long n)
         {
             if (n < 10) return 0;
             var count = 0;
             return PersistentBuggerFunction(n, count);
         }
 
-        private static int PersistentBuggerFunction(long n, int count)
+        private  int PersistentBuggerFunction(long n, int count)
         {
             var i = n.ToString().ToCharArray();
             var temp = 1;

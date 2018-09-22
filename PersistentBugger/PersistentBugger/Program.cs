@@ -10,7 +10,6 @@ namespace PersistentBugger
     {
         static void Main(string[] args)
         {
-            Persist.Persistence(39);
         }
     }
 }
